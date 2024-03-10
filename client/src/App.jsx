@@ -2,10 +2,11 @@ import { useReducer, useState } from 'react'
 
 import './App.css'
 import Header from './components/Header'
+import Questions from './components/Questions'
 
 const initialState = {
   questions: [],
-  status: 'loading', // ready,error,finished
+  status: 'loading', // ready,error,finished,showQuestions
   index: 0,
   totalPoints: 0,
   secondsRemaining: 10,
@@ -14,6 +15,11 @@ const initialState = {
 
 function reducer(state,action) {
 
+    if(action.type === 'showQuestions') {
+      return {...state, status: 'ready'}
+    }
+
+    
 }
 
 function App() {
@@ -22,7 +28,8 @@ function App() {
 
   return (
     <div className='container'>
-      <Header />
+      <Header dispatch={dispatch} />
+      {state.status === 'ready' ? <Questions /> : null}
     </div>
   )
 }
