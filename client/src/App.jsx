@@ -1,8 +1,9 @@
-import { useReducer, useState } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 
 import './App.css'
 import Header from './components/Header'
 import Questions from './components/Questions'
+import { getQuestions } from './services/questionService'
 
 const initialState = {
   questions: [],
@@ -19,17 +20,24 @@ function reducer(state,action) {
       return {...state, status: 'ready'}
     }
 
-    
+   else if(action.type === 'getQuestions') {
+      return {...state, questions: action.payload}
+    }
 }
 
 function App() {
  
   const [state,dispatch] = useReducer(reducer,initialState)
 
+  useEffect(() => {
+    getQuestions()
+    .then((res) => dispatch({type: 'getQuestions', payload: res}))
+  },[])
+
   return (
     <div className='container'>
       <Header dispatch={dispatch} />
-      {state.status === 'ready' ? <Questions /> : null}
+      {state.status === 'ready' ? <Questions questions={state.questions} /> : null}
     </div>
   )
 }
