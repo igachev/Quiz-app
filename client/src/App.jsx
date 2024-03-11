@@ -37,7 +37,7 @@ function App() {
   return (
     <div className='container'>
       <Header dispatch={dispatch} />
-      {state.status === 'ready' ? <Questions questions={state.questions} /> : null}
+      {state.status === 'ready' ? <Questions questions={state.questions} index={state.index} /> : null}
     </div>
   )
 }

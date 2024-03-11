@@ -1,16 +1,17 @@
 
 export default function Questions({
-    questions
+    questions,
+    index
 }) {
     console.log(questions)
     return (
         <div className="questions">
-            <h3>What is that?</h3>
-            <div>
-                <p>A</p>
-                <p>B</p>
-                <p>C</p>
-                <p>D</p>
+            <h3>{questions[index].question}</h3>
+            <div className="answers">
+                <button>{questions[index].A}</button>
+                <button>{questions[index].B}</button>
+                <button>{questions[index].C}</button>
+                <button>{questions[index].D}</button>
             </div>
         </div>
     )
