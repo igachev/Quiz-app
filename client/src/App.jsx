@@ -4,6 +4,7 @@ import './App.css'
 import Header from './components/Header'
 import Questions from './components/Questions'
 import { getQuestions } from './services/questionService'
+import Loader from './components/Loader'
 
 const initialState = {
   questions: [],
@@ -11,33 +12,32 @@ const initialState = {
   index: 0,
   totalPoints: 0,
   secondsRemaining: 10,
-  userSelectedAnswer: null
+  userSelectedAnswer: null,
+  showQuestions: false
 }
 
 function reducer(state,action) {
 
     if(action.type === 'showQuestions') {
-      return {...state, status: 'ready'}
+      return {...state, showQuestions: true}
     }
 
    else if(action.type === 'getQuestions') {
-      return {...state, questions: action.payload}
+      return {...state, questions: action.payload, status: 'ready'}
     }
+
 }
 
 function App() {
  
   const [state,dispatch] = useReducer(reducer,initialState)
 
-  useEffect(() => {
-    getQuestions()
-    .then((res) => dispatch({type: 'getQuestions', payload: res}))
-  },[])
+ 
 
   return (
     <div className='container'>
       <Header dispatch={dispatch} />
-      {state.status === 'ready' ? <Questions questions={state.questions} index={state.index} /> : null}
+      {state.showQuestions === true ? <Questions questions={state.questions} index={state.index} status={state.status} dispatch={dispatch}  /> : null}
     </div>
   )
 }
