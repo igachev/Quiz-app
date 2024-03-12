@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { getQuestions } from "../services/questionService"
 import Loader from "./Loader"
+import Error from "./Error"
 
 export default function Questions({
     questions,
@@ -12,12 +13,14 @@ export default function Questions({
     useEffect(() => {
         getQuestions()
         .then((res) => dispatch({type: 'getQuestions', payload: res}))
+        .catch((err) => dispatch({type: 'error', payload: err.message}))
       },[])
 
     return (
         
         <div className="questions">
             {status === 'loading' && <Loader />}
+           
            {questions.length > 0 && (
             <>
              <h3>{questions[index].question}</h3>

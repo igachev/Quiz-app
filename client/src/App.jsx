@@ -5,6 +5,7 @@ import Header from './components/Header'
 import Questions from './components/Questions'
 import { getQuestions } from './services/questionService'
 import Loader from './components/Loader'
+import Error from './components/Error'
 
 const initialState = {
   questions: [],
@@ -13,7 +14,8 @@ const initialState = {
   totalPoints: 0,
   secondsRemaining: 10,
   userSelectedAnswer: null,
-  showQuestions: false
+  showQuestions: false,
+  errorMessage: ''
 }
 
 function reducer(state,action) {
@@ -24,6 +26,10 @@ function reducer(state,action) {
 
    else if(action.type === 'getQuestions') {
       return {...state, questions: action.payload, status: 'ready'}
+    }
+
+    else if(action.type === 'error') {
+      return {...state, status: 'error',errorMessage: action.payload}
     }
 
 }
@@ -37,6 +43,7 @@ function App() {
   return (
     <div className='container'>
       <Header dispatch={dispatch} />
+      {state.status === 'error' && <Error errorMessage={state.errorMessage} />}
       {state.showQuestions === true ? <Questions questions={state.questions} index={state.index} status={state.status} dispatch={dispatch}  /> : null}
     </div>
   )
