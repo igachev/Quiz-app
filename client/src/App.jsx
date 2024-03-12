@@ -32,6 +32,9 @@ function reducer(state,action) {
       return {...state, status: 'error',errorMessage: action.payload}
     }
 
+    else if(action.type === 'selectAnswer') {
+      return {...state, userSelectedAnswer: action.payload}
+    }
 }
 
 function App() {
@@ -44,7 +47,7 @@ function App() {
     <div className='container'>
       <Header dispatch={dispatch} />
       {state.status === 'error' && <Error errorMessage={state.errorMessage} />}
-      {state.showQuestions === true ? <Questions questions={state.questions} index={state.index} status={state.status} dispatch={dispatch}  /> : null}
+      {state.showQuestions === true ? <Questions questions={state.questions} index={state.index} status={state.status} dispatch={dispatch} userSelectedAnswer={state.userSelectedAnswer}  /> : null}
     </div>
   )
 }

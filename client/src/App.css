@@ -77,3 +77,11 @@ body {
 .container .questions .answers button:hover {
     background-color: black;
 }
+
+.container .questions .answers .wrong:focus {
+    background-color: red;
+}
+
+.container .questions .answers .correct {
+    background-color: green;
+}
