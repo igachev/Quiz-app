@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { getQuestions } from "../services/questionService"
 import Loader from "./Loader"
 
@@ -10,7 +10,7 @@ export default function Questions({
     dispatch,
     userSelectedAnswer
 }) {
-
+    const [btnDisabled,setBtnDisabled] = useState(false)
     let correctAnswer = questions.length > 0 && questions[index].answer;
     let correctAnswerValue = questions.length > 0 && questions[index][correctAnswer];
    
@@ -24,10 +24,12 @@ export default function Questions({
 
    function onUserSelectedAnswer(e) {
     dispatch({type:'selectAnswer', payload: e.target.value})
+    setBtnDisabled(true)
    }
 
    function nextQuestion() {
     dispatch({type:'nextQuestion',payload: correctAnswerValue})
+    setBtnDisabled(false)
    }
 
     return (
@@ -39,10 +41,10 @@ export default function Questions({
             <>
              <h3>{questions[index].question}</h3>
              <div className="answers">
-                 <button onClick={onUserSelectedAnswer} value={questions[index].A} className={`${userSelectedAnswer ? correctAnswerValue === questions[index].A ? 'correct' : 'wrong' : null}`}>{questions[index].A}</button>
-                 <button onClick={onUserSelectedAnswer} value={questions[index].B} className={`${userSelectedAnswer ? correctAnswerValue === questions[index].B ? 'correct' : 'wrong' : null}`}>{questions[index].B}</button>
-                 <button onClick={onUserSelectedAnswer} value={questions[index].C} className={`${userSelectedAnswer ? correctAnswerValue === questions[index].C ? 'correct' : 'wrong' : null}`}>{questions[index].C}</button>
-                 <button onClick={onUserSelectedAnswer} value={questions[index].D} className={`${userSelectedAnswer ? correctAnswerValue === questions[index].D ? 'correct' : 'wrong' : null}`}>{questions[index].D}</button>
+                 <button disabled={btnDisabled ? true : false} onClick={onUserSelectedAnswer} value={questions[index].A} className={`${userSelectedAnswer ? correctAnswerValue === questions[index].A ? 'correct' : 'wrong' : null}`}>{questions[index].A}</button>
+                 <button disabled={btnDisabled ? true : false} onClick={onUserSelectedAnswer} value={questions[index].B} className={`${userSelectedAnswer ? correctAnswerValue === questions[index].B ? 'correct' : 'wrong' : null}`}>{questions[index].B}</button>
+                 <button disabled={btnDisabled ? true : false} onClick={onUserSelectedAnswer} value={questions[index].C} className={`${userSelectedAnswer ? correctAnswerValue === questions[index].C ? 'correct' : 'wrong' : null}`}>{questions[index].C}</button>
+                 <button disabled={btnDisabled ? true : false} onClick={onUserSelectedAnswer} value={questions[index].D} className={`${userSelectedAnswer ? correctAnswerValue === questions[index].D ? 'correct' : 'wrong' : null}`}>{questions[index].D}</button>
              </div>
 
              <div>

@@ -3,8 +3,6 @@ import { useEffect, useReducer, useState } from 'react'
 import './App.css'
 import Header from './components/Header'
 import Questions from './components/Questions'
-import { getQuestions } from './services/questionService'
-import Loader from './components/Loader'
 import Error from './components/Error'
 
 const initialState = {
@@ -33,14 +31,16 @@ function reducer(state,action) {
     }
 
     else if(action.type === 'selectAnswer') {
-      return {...state, userSelectedAnswer: action.payload}
+      
+        return {...state, userSelectedAnswer: action.payload}
+      
     }
 
     else if(action.type === 'nextQuestion') {
       const correctAnswer = action.payload;
       let points = state.totalPoints;
       const isCorrect = correctAnswer === state.userSelectedAnswer
-      
+
       if(isCorrect) {
         points += 10;
       }

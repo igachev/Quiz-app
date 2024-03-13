@@ -78,7 +78,7 @@ body {
     background-color: black;
 }
 
-.container .questions .answers .wrong:focus {
+.container .questions .answers .wrong {
     background-color: red;
 }
 
