@@ -35,6 +35,10 @@ function reducer(state,action) {
     else if(action.type === 'selectAnswer') {
       return {...state, userSelectedAnswer: action.payload}
     }
+
+    else if(action.type === 'nextQuestion') {
+      return {...state, index: state.index + 1,userSelectedAnswer: null}
+    }
 }
 
 function App() {

@@ -85,3 +85,15 @@ body {
 .container .questions .answers .correct {
     background-color: green;
 }
+
+.container .questions .next-btn {
+    border-radius: 0.7rem;
+    outline: none;
+    border: none;
+    padding: 0.3rem 0.5rem;
+    cursor: pointer;
+    background-color: darkgoldenrod;
+    color: #fff;
+    margin-top: 0.8rem;
+    font-size: 1rem;
+}

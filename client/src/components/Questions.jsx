@@ -26,6 +26,10 @@ export default function Questions({
     dispatch({type:'selectAnswer', payload: e.target.value})
    }
 
+   function nextQuestion() {
+    dispatch({type:'nextQuestion'})
+   }
+
     return (
         
         <div className="questions">
@@ -39,6 +43,10 @@ export default function Questions({
                  <button onClick={onUserSelectedAnswer} value={questions[index].B} className={`${userSelectedAnswer ? correctAnswerValue === questions[index].B ? 'correct' : 'wrong' : null}`}>{questions[index].B}</button>
                  <button onClick={onUserSelectedAnswer} value={questions[index].C} className={`${userSelectedAnswer ? correctAnswerValue === questions[index].C ? 'correct' : 'wrong' : null}`}>{questions[index].C}</button>
                  <button onClick={onUserSelectedAnswer} value={questions[index].D} className={`${userSelectedAnswer ? correctAnswerValue === questions[index].D ? 'correct' : 'wrong' : null}`}>{questions[index].D}</button>
+             </div>
+
+             <div>
+                <button onClick={nextQuestion} className="next-btn">Next Question</button>
              </div>
             </>
            )}
