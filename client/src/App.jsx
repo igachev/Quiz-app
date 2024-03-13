@@ -37,7 +37,15 @@ function reducer(state,action) {
     }
 
     else if(action.type === 'nextQuestion') {
-      return {...state, index: state.index + 1,userSelectedAnswer: null}
+      const correctAnswer = action.payload;
+      let points = state.totalPoints;
+      const isCorrect = correctAnswer === state.userSelectedAnswer
+      
+      if(isCorrect) {
+        points += 10;
+      }
+      
+      return {...state, index: state.index + 1, totalPoints: points, userSelectedAnswer: null}
     }
 }
 

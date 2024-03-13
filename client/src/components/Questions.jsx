@@ -27,7 +27,7 @@ export default function Questions({
    }
 
    function nextQuestion() {
-    dispatch({type:'nextQuestion'})
+    dispatch({type:'nextQuestion',payload: correctAnswerValue})
    }
 
     return (
