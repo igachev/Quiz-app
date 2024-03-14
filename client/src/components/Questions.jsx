@@ -8,11 +8,13 @@ export default function Questions({
     index,
     status,
     dispatch,
-    userSelectedAnswer
+    userSelectedAnswer,
+    totalQuestions
 }) {
     const [btnDisabled,setBtnDisabled] = useState(false)
     let correctAnswer = questions.length > 0 && questions[index].answer;
     let correctAnswerValue = questions.length > 0 && questions[index][correctAnswer];
+    let questionNumber = index + 1;
    
     useEffect(() => {
         getQuestions()
@@ -48,7 +50,9 @@ export default function Questions({
              </div>
 
              <div>
-                <button onClick={nextQuestion} className="next-btn">Next Question</button>
+                {questionNumber < totalQuestions
+                ? <button onClick={nextQuestion} className="next-btn">Next Question</button>
+                : <button className="next-btn">Finish Quiz</button>}
              </div>
             </>
            )}

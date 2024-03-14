@@ -63,7 +63,7 @@ function App() {
       {state.showQuestions === true ? 
       (<>
       <Progress totalQuestions={totalQuestions} questionNumber={state.index} totalPoints={state.totalPoints} />
-      <Questions questions={state.questions} index={state.index} status={state.status} dispatch={dispatch} userSelectedAnswer={state.userSelectedAnswer}  />
+      <Questions questions={state.questions} totalQuestions={totalQuestions} index={state.index} status={state.status} dispatch={dispatch} userSelectedAnswer={state.userSelectedAnswer}  />
       </>)
        : null}
     </div>
