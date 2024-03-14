@@ -4,6 +4,7 @@ import './App.css'
 import Header from './components/Header'
 import Questions from './components/Questions'
 import Error from './components/Error'
+import Progress from './components/Progress'
 
 const initialState = {
   questions: [],
@@ -52,14 +53,19 @@ function reducer(state,action) {
 function App() {
  
   const [state,dispatch] = useReducer(reducer,initialState)
-
+  const totalQuestions = state.questions.length;
  
 
   return (
     <div className='container'>
       <Header dispatch={dispatch} />
       {state.status === 'error' && <Error errorMessage={state.errorMessage} />}
-      {state.showQuestions === true ? <Questions questions={state.questions} index={state.index} status={state.status} dispatch={dispatch} userSelectedAnswer={state.userSelectedAnswer}  /> : null}
+      {state.showQuestions === true ? 
+      (<>
+      <Progress totalQuestions={totalQuestions} questionNumber={state.index} totalPoints={state.totalPoints} />
+      <Questions questions={state.questions} index={state.index} status={state.status} dispatch={dispatch} userSelectedAnswer={state.userSelectedAnswer}  />
+      </>)
+       : null}
     </div>
   )
 }
