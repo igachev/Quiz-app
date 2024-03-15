@@ -34,6 +34,10 @@ export default function Questions({
     setBtnDisabled(false)
    }
 
+   function completeQuiz() {
+    dispatch({type: 'completeQuiz'})
+   }
+
     return (
         
         <div className="questions">
@@ -52,7 +56,7 @@ export default function Questions({
              <div>
                 {questionNumber < totalQuestions
                 ? <button onClick={nextQuestion} className="next-btn">Next Question</button>
-                : <button className="next-btn">Finish Quiz</button>}
+                : <button onClick={completeQuiz} className="next-btn">Finish Quiz</button>}
              </div>
             </>
            )}

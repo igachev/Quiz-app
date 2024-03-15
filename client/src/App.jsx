@@ -5,6 +5,7 @@ import Header from './components/Header'
 import Questions from './components/Questions'
 import Error from './components/Error'
 import Progress from './components/Progress'
+import QuizCompleted from './components/QuizCompleted'
 
 const initialState = {
   questions: [],
@@ -48,6 +49,10 @@ function reducer(state,action) {
       
       return {...state, index: state.index + 1, totalPoints: points, userSelectedAnswer: null}
     }
+
+    else if(action.type === 'completeQuiz') {
+      return {...state, status: 'completed', showQuestions: false, index: 0}
+    }
 }
 
 function App() {
@@ -66,6 +71,8 @@ function App() {
       <Questions questions={state.questions} totalQuestions={totalQuestions} index={state.index} status={state.status} dispatch={dispatch} userSelectedAnswer={state.userSelectedAnswer}  />
       </>)
        : null}
+
+       {state.status === 'completed' && <QuizCompleted totalPoints={state.totalPoints} />}
     </div>
   )
 }
