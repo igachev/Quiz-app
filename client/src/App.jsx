@@ -53,6 +53,19 @@ function reducer(state,action) {
     else if(action.type === 'completeQuiz') {
       return {...state, status: 'completed', showQuestions: false, index: 0}
     }
+
+    else if(action.type === 'reset') {
+      return {
+        ...state,
+        status: 'ready',
+        index: 0,
+        totalPoints: 0,
+        secondsRemaining: 10,
+        userSelectedAnswer: null,
+        showQuestions: true,
+        errorMessage: ''
+      }
+    }
 }
 
 function App() {
@@ -72,7 +85,7 @@ function App() {
       </>)
        : null}
 
-       {state.status === 'completed' && <QuizCompleted totalPoints={state.totalPoints} />}
+       {state.status === 'completed' && <QuizCompleted totalPoints={state.totalPoints} dispatch={dispatch} />}
     </div>
   )
 }
