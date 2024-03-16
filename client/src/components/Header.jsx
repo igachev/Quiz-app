@@ -1,6 +1,8 @@
 
 export default function Header({
-    dispatch
+    dispatch,
+    displayQuestions,
+    status
 }) {
 
     function showQuestions() {
@@ -13,7 +15,7 @@ export default function Header({
             <h3>try your best to figure out the correct answers to our questions</h3>
 
             <div>
-                <button onClick={showQuestions}>Start The Quiz</button>
+               {!displayQuestions && status !== 'completed' && <button onClick={showQuestions}>Start The Quiz</button>}
             </div>
 
         </div>

@@ -76,7 +76,7 @@ function App() {
 
   return (
     <div className='container'>
-      <Header dispatch={dispatch} />
+      <Header dispatch={dispatch} status={state.status} displayQuestions={state.showQuestions} />
       {state.status === 'error' && <Error errorMessage={state.errorMessage} />}
       {state.showQuestions === true ? 
       (<>
