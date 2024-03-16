@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { getQuestions } from "../services/questionService"
 import Loader from "./Loader"
+import Timer from "./Timer";
 
 
 export default function Questions({
@@ -58,6 +59,8 @@ export default function Questions({
                 ? <button onClick={nextQuestion} className="next-btn">Next Question</button>
                 : <button onClick={completeQuiz} className="next-btn">Finish Quiz</button>}
              </div>
+
+             <Timer totalQuestions={totalQuestions} status={status} dispatch={dispatch} />
             </>
            )}
         </div>

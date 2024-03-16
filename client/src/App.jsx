@@ -6,6 +6,7 @@ import Questions from './components/Questions'
 import Error from './components/Error'
 import Progress from './components/Progress'
 import QuizCompleted from './components/QuizCompleted'
+import GameOver from './components/GameOver'
 
 const initialState = {
   questions: [],
@@ -66,6 +67,10 @@ function reducer(state,action) {
         errorMessage: ''
       }
     }
+
+    else if(action.type === 'game over') {
+      return {...state, status: 'gameOver', index: 0, showQuestions: false}
+    }
 }
 
 function App() {
@@ -86,6 +91,7 @@ function App() {
        : null}
 
        {state.status === 'completed' && <QuizCompleted totalPoints={state.totalPoints} dispatch={dispatch} />}
+       {state.status === 'gameOver' && <GameOver />}
     </div>
   )
 }

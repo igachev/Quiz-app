@@ -15,7 +15,7 @@ export default function Header({
             <h3>try your best to figure out the correct answers to our questions</h3>
 
             <div>
-               {!displayQuestions && status !== 'completed' && <button onClick={showQuestions}>Start The Quiz</button>}
+               {!displayQuestions && status !== 'completed' && status !== 'gameOver' && <button onClick={showQuestions}>Start The Quiz</button>}
             </div>
 
         </div>
