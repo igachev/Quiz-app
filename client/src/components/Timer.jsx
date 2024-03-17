@@ -6,7 +6,7 @@ export default function Timer({
     dispatch
 }) {
 
-    const [timeRemaining,setTimeRemaining] = useState(() => 20)
+    const [timeRemaining,setTimeRemaining] = useState(() => totalQuestions * 30)
     const [minutes,setMinutes] = useState(() => timeRemaining / 60);
     const [seconds,setSeconds] = useState(() => ((timeRemaining / 60) * 60) % 60);
 

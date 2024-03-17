@@ -91,7 +91,7 @@ function App() {
        : null}
 
        {state.status === 'completed' && <QuizCompleted totalPoints={state.totalPoints} dispatch={dispatch} />}
-       {state.status === 'gameOver' && <GameOver />}
+       {state.status === 'gameOver' && <GameOver dispatch={dispatch} /> }
     </div>
   )
 }
