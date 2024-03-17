@@ -113,3 +113,24 @@ body {
 .completed-quiz div {
     text-align: center;
 }
+
+.game-over {
+    text-align: center;
+}
+
+.game-over h3 {
+    font-size: 1.5rem;
+    color: red;
+}
+
+.game-over-btn {
+    border-radius: 0.7rem;
+    outline: none;
+    border: none;
+    padding: 0.3rem 0.5rem;
+    cursor: pointer;
+    background-color: cornflowerblue;
+    color: #fff;
+    margin-top: 0.8rem;
+    font-size: 1rem;
+}
