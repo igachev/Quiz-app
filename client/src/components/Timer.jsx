@@ -32,7 +32,7 @@ export default function Timer({
 
     return (
         <div className="timer">
-            <p>{minutes} : {seconds}</p>
+            <p>{minutes < 10 ? '0' : null}{minutes} : {seconds < 10 ? '0': null}{seconds}</p>
         </div>
     )
 }
