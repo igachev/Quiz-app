@@ -6,9 +6,9 @@ export default function Timer({
     dispatch
 }) {
 
-    const [timeRemaining,setTimeRemaining] = useState(() => totalQuestions * 30)
-    const [minutes,setMinutes] = useState(0);
-    const [seconds,setSeconds] = useState(0);
+    const [timeRemaining,setTimeRemaining] = useState(() => 20)
+    const [minutes,setMinutes] = useState(() => timeRemaining / 60);
+    const [seconds,setSeconds] = useState(() => ((timeRemaining / 60) * 60) % 60);
 
     function interval() {
         setTimeRemaining((time) => time - 1);
@@ -32,7 +32,7 @@ export default function Timer({
 
     return (
         <div className="timer">
-            {minutes} : {seconds}
+            <p>{minutes} : {seconds}</p>
         </div>
     )
 }
